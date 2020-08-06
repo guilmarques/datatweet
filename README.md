@@ -23,4 +23,4 @@
 - Run `python webapp.py` script to access the page that visualizes the data
 
 ### Architecture and Tools
-![Pipeline](data engineer arch.png?raw=True "Pipeline")
+![Pipeline](https://github.com/guilmarques/datatweet/blob/master/data%20engineer%20arch.png?raw=True "Pipeline")
