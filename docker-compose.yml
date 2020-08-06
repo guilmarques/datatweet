@@ -1,0 +1,46 @@
+version: '3'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    hostname: ${KAFKA_ADVERTISED_HOST}
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: ${KAFKA_ADVERTISED_HOST}
+      KAFKA_CREATE_TOPICS: ${KAFKA_TOPICS}
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    links:
+      - zookeeper
+
+
+  hbase:
+    build: ./hbase
+    image: lee51/hbase
+    container_name: hbase
+    hostname: ${HOSTNAME}
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper
+    ports:
+      - 16000:16000 # master
+      - 16010:16010 # master-ui
+      - 16201:16201 # rs
+      - 16301:16301 # rs-ui
+      - 9095:9095
+      - 9090:9090
+
+  presto:
+      image: starburstdata/presto
+      container_name: presto
+      ports:
+        - 8080:8080

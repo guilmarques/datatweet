@@ -1,0 +1,19 @@
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+  <property>
+     <name>hbase.zookeeper.quorum</name>
+     <value>zookeeper</value>
+  </property>
+
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+
+  <property>
+     <name>hbase.rootdir</name>
+     <value>file:///home/hbase</value>
+  </property>
+
+</configuration>
