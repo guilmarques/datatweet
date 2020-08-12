@@ -16,6 +16,8 @@
 - Change Twitter Tokens on reader.py and mysql credentials on processor.py
 - Don't forget to config your /etc/mysql/my.cnf (MySql) with `bind-address=0.0.0.0` to allow external connections from docker
 - Change (IPDODOCKER var) and Copy mysqlcatalog.properties to /etc/presto/catalog (inside presto container) to make the queries from presto
+- Run mysql container: `docker run --name some-mysql -p 3306:3306 -p 8080:8080 -v C:\Users\U003675\Desktop\DataEngineerTweetProcessing\mysql:/etc/mysql/conf.d -e
+ MYSQL_ROOT_PASSWORD=123db4 -d mysql:latest`
 - If you never run this project before type `export KAFKA_TOPICS="TweetsTopic:1:3"` it will create the Kafka Topic when the image build up (or SET instead export if you're Windows User)
 - Run start_all.sh (it will start HBASE and KAFKA docker containers and services)
 - Run `python reader.py` script to read the tweets and produce them using Kafka Producer.
